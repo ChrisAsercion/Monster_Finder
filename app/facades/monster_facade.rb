@@ -6,6 +6,6 @@ class MonsterFacade
   def get_data
     service = MonsterService.new
 
-    json = service.
+    json = service.monsters_by_query(@query)
   end
 end

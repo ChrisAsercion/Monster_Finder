@@ -1,8 +1,14 @@
 class Api::V0::MonstersController < ApplicationController
   def show
+    cr = params[:cr].to_i
 
-    cr = 3 #params[cr] in the future? hard coded for right now
+    facade = MonsterFacade.new(cr)
 
-    facade = MonsterFacade.new
+    monsters_data = facade.get_data
+
+    monster_list = monsters_data[:results]
+    monsters = monster_list.map { |monster_info| Monster.new(monster_info)}
+
+    render json: monsters
   end
 end
