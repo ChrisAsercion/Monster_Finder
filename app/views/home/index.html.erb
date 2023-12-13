@@ -1,0 +1,49 @@
+<h1>D&D Monster Finder</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Selection</title>
+</head>
+<body>
+
+  <label for="numberSelector">Select a number from 1 to 20:</label>
+  <select id="numberSelector" name="selectedNumber">
+    <!-- JavaScript will populate options here -->
+  </select>
+
+  <a href="#" id="findMonsterLink">Find a Monster</a>
+
+  <script>
+    // Get the select element
+    var selectElement = document.getElementById("numberSelector");
+
+    // Generate options dynamically using a loop
+    for (var i = 1; i <= 20; i++) {
+      // Create an option element
+      var optionElement = document.createElement("option");
+
+      // Set the value and text of the option
+      optionElement.value = i;
+      optionElement.text = i;
+
+      // Append the option to the select element
+      selectElement.add(optionElement);
+    }
+
+    // Get the "Find a Monster" link
+    var findMonsterLink = document.getElementById("findMonsterLink");
+
+    // Add an event listener to the link
+    findMonsterLink.addEventListener("click", function() {
+      // Get the selected value from the dropdown
+      var selectedNumber = selectElement.value;
+
+      // Redirect to the desired path with the selected number as a parameter
+      window.location.href = "/api/v0/monster_list?cr=" + selectedNumber;
+    });
+  </script>
+
+</body>
+</html>
